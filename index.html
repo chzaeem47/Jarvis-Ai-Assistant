@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarvis</title><link rel="shortcut icon" href="pictures/icon.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!--TEXTILLATE TEXT ANMATIONS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/textillate/0.4.0/jquery.textillate.min.js"></script>
+    
+</head>
+<body>
+
+    <img src="pictures/logo.png" style="width: 60ch;" class="logo">
+    
+
+    <div class="hamburger-menu" id="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <p class="sidebar-header-text">Chat History</p>
+            <button class="close-btn" id="closeBtn">✕</button>
+        </div>
+        <div class="chat-history">
+            <h3>Chat History</h3>
+            <div class="history-items" id="historyItems">
+                <p class="empty-history">No chat history yet</p>
+            </div>
+        </div>
+        <div class="sidebar-buttons">
+            <button class="sidebar-select-btn" id="selectBtn" title="Select conversations">Select</button>
+            <button class="sidebar-delete-btn" id="deleteBtn" title="Delete selected">Delete</button>
+        </div>
+        <button class="init-button" id="initButton">Initialize Jarvis</button>
+    </div>
+
+    
+
+    <div class="activity-log" id="activityLog">
+        <div class="activity-header">
+            <h3>Activity</h3>
+            <button class="activity-delete">Delete</button>
+        </div>
+        <div class="activity-items" id="activityItems">
+            <p class="empty-activity">Waiting for Messages</p>
+        </div>
+    </div>
+    
+
+    <div class="main-container">
+        <div class="blob-wrapper">
+            <div class="blob-outer-glow"></div>
+            <div class="blob-inner-core">
+                <div class="blob-inner-core">
+                  <div class="particles"></div>
+                  <div class="particles-extra"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="ui-content">
+            <p><span id="typed"></span></p>
+            
+            <div id="siri-container"></div>
+            
+            <div class="input-container">
+                <input type="text" placeholder="Type here ...">
+                <div class="icon-group">
+                    <button class="icon-btn" id="sendBtn" title="Send message" type="button"><box-icon name='send' color='#ffffff' class="custom_icon"></box-icon></button>
+                    <button class="icon-btn" id="micBtn" type="button"><box-icon name='user-voice' color='#ffffff' class="custom_icon"></box-icon></button>
+                    <button class="icon-btn" type="button"><box-icon name='paperclip' color='#ffffff' class="custom_icon"></box-icon></button>
+                    <button class="icon-btn" type="button"><box-icon name='cog' color='#ffffff' class="custom_icon"></box-icon></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="contact-me-container">
+    <div class="contact-text">
+    <p style="color: white; font-family: 'Times New Roman', Times, serif; font-size: 20px;">Contact Me</p>
+    </div>
+    <div class="contact-icon-div">
+    <a href="https://github.com/chzaeem47" target="main"><box-icon name='github' type='logo' color='#ffffff' size="35px"></box-icon></a>
+    <a href="https://www.facebook.com/share/1AfD1A8VnJ/?mibextid=wwXIfr" target="main"><box-icon name='facebook-circle' type='logo' color='#115fbd' size="35px"></box-icon></a>
+    <a href="https://wa.me/923191520147" target="main"><box-icon name='whatsapp' type='logo' color='#0c8b0d' size="36px"></box-icon></a>
+    </div>
+
+
+    
+
+    
+
+</body>
+<!--SIRI WAVE-->
+<script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
+<!--BOX ICONS-->
+<script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+<script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+<script src="frontend/sidebar.js"></script>
+<script src="frontend/chat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+</html>
