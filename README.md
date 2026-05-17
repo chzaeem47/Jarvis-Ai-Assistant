@@ -1,121 +1,127 @@
-# Jarvis AI Assistant - Setup Guide
+JARVIS is a multi-lingual, voice-activated AI personal assistant designed to seamlessly handle tasks, automate desktop interactions, and retain contextual memory across conversations. Built using an agentic architecture, it combines speech-to-text intelligence, localized data management, automation scripts, and a robust Flask backend with a responsive frontend UI.
 
-## Project Structure
-
-```
-JARVIS/
-├── index.html                 # Main UI (frontend)
-├── style.css                  # Styling
-├── package.json              # Node dependencies
-├── .env                       # Environment variables (create from .env.example)
-├── .env.example              # Example env file
-├── backend/                  # Python backend
-│   ├── app.py               # Flask application
-│   ├── config.py            # Configuration
-│   ├── chat_service.py      # Gemini chat service
-│   └── requirements.txt      # Python dependencies
-|   |_features.py            #AUtomation 
-|   |_db.py                  #sqlLite DB
-├── frontend/                # Frontend JavaScript
-│   └── chat.js             # Chat client
-├── data/                    # Data storage
-│   └── chat_history.json   # Chat history (auto-generated)
-└── pictures/               # Images
-```
-
-## Setup Instructions
-
-### Step 1: Get Google Gemini API Key
-
-1. Go to [Google AI Studio](https://makersuite.google.com/app/apikey)
-2. Click "Create API Key"
-3. Copy your API key
-
-### Step 2: Setup Environment Variable
-
-1. Make your own  .env:
-
-2. Open .env and replace your_api_key_here with your actual API key:
-  
-   GEMINI_API_KEY=your_actual_api_key_here
-   FLASK_ENV=development
-
-### Step 3: Install Python Dependencies
-
-1. Open terminal in the project root
-2. Create a virtual environment (recommended):
-   ```bash
-   python -m venv venv
-   # On Windows
-   venv\Scripts\activate
-   # On Mac/Linux
-   source venv/bin/activate
-   ```
-
-3. Install dependencies:
-   ```bash
-   pip install -r backend/requirements.txt
-   ```
-
-### Step 4: Start the Backend
-
-In your terminal (with virtual environment activated):
-```bash
-python backend/app.py
-```
-
-You should see:
-```
-Starting Jarvis Backend...
-Environment: development
- * Running on http://127.0.0.1:5000
-```
-
-### Step 5: Open Frontend
-
-1. Open `index.html` in your browser
-2. Click the hamburger menu (three lines) → Click "Initialize Jarvis"
-3. Type your message and press Enter or click the voice icon
-
-## Features
-
-- **Chat with Gemini**: Send messages and get AI responses
-- **Chat History**: All conversations are saved in `data/chat_history.json`
-- **Beautiful UI**: Maintains your original design with animations
-- **Initialize Jarvis**: Checks if backend is running
-
-## API Endpoints
-
-- `POST /api/chat` - Send a message and get response
-- `GET /api/history` - Get all chat history
-- `DELETE /api/history` - Clear chat history
-- `GET /api/health` - Health check
-
-## Troubleshooting
-
-### "Could not initialize Jarvis" error
-- Make sure backend is running on `http://127.0.0.1:5000`
-- Check terminal for backend errors
-
-### "GEMINI_API_KEY environment variable is not set"
-- Make sure `.env` file exists in project root
-- Verify your API key is correctly set
-
-### ModuleNotFoundError
-- Ensure virtual environment is activated
-- Run `pip install -r backend/requirements.txt`
-
-## Environment Variables
-
-Create a `.env` file (copy from `.env.example`):
-
-```
-GEMINI_API_KEY=your_google_gemini_api_key
-FLASK_ENV=development
-```
-
-**Never commit `.env` to version control!**
+## ✨ Features
+* **🗣️ Multi-Lingual Speech Recognition:** Seamless voice-to-text and text-to-speech capabilities.
+* **🧠 Agentic Memory Modules:** Context-aware interactions powered by an intelligent chat memory layer.
+* **🗄️ Embedded Relational Storage:** Utilizes a lightweight SQLite database (`jarvis.db`) for ultra-fast local data management and transaction logging.
+* **🖥️ Desktop Automation:** Integrated with `pyautogui` and pixel-finding scripts to automate system-level tasks.
+* **🎨 Clean UI Front-End:** Includes an interactive chat interface with built-in voice activation panels (Siri mode).
 
 ---
 
-Enjoy chatting with Jarvis! 🚀
+## 🚀 Getting Started (Step-by-Step)
+
+Follow these instructions to get a copy of JARVIS up and running on your local machine.
+
+### 📋 Prerequisites
+
+Before you begin, ensure you have the following installed on your system:
+* **Python 3.10+** (Download from [python.org](https://www.python.org/downloads/))
+* **Git** (Download from [git-scm.com](https://git-scm.com/))
+* A modern web browser (Chrome, Edge, Firefox)
+
+---
+
+### 1. Clone the Repository
+Open your terminal or command prompt and run the following commands to clone the project and navigate into its directory:
+
+```bash
+git clone [https://github.com/YOUR_USERNAME/jarvis-agentic-assistant.git](https://github.com/YOUR_USERNAME/jarvis-agentic-assistant.git)
+cd jarvis-agentic-assistant
+2. Set Up a Virtual Environment (Recommended)
+A virtual environment keeps the project dependencies isolated from your global system.
+
+On Windows:
+
+Bash
+python -m venv venv
+venv\Scripts\activate
+On macOS/Linux:
+
+Bash
+python3 -m venv venv
+source venv/bin/activate
+3. Install Dependencies
+Install all the required Python packages using pip directly from the root directory:
+
+Bash
+pip install -r requirements.txt
+4. Configure Environment Variables
+Look at the .env.example file provided in the root directory for reference.
+
+Create a new file named .env in the root directory.
+
+Open the file and add your configuration credentials (e.g., API keys, Flask settings):
+
+Code snippet
+FLASK_ENV=development
+SECRET_KEY=your_secret_key_here
+API_KEY=your_api_key_here
+⚠️ Note: Never commit your actual .env file to GitHub. It is already added to the .gitignore to protect your credentials.
+
+5. Run the Backend Application
+Navigate into the backend folder and start the Flask development server:
+
+Bash
+cd backend
+python app.py
+Your backend server will now be running locally at http://127.0.0.1:5000/.
+
+6. Launch the Front-End User Interface
+Keep the backend terminal running, open a new file explorer window, navigate to the root folder of your project, and open index.html in any web browser to start chatting with JARVIS!
+
+📁 Project Structure
+Here is a breakdown of how the project is organized:
+
+Plaintext
+├── backend/               # Core Python Flask API & Logic
+│   ├── __pycache__/
+│   ├── app.py             # Main backend application entry point
+│   ├── chat_service.py    # LLM & reasoning integration handlers
+│   ├── config.py          # Configuration and environmental setups
+│   ├── contacts.csv       # Saved target contacts for automations
+│   ├── db.py              # Database configuration logic
+│   ├── features.py        # System control and action definitions
+│   ├── find_pixels.py     # Desktop pixel-detection automation scripts
+│   └── jarvis.db          # Embedded local database
+│
+├── data/                  # Local system memory storage
+│   ├── chat_history.json  # Saved conversations for session persistence
+│   └── sample_apps.txt    # Application routing definitions
+│
+├── frontend/              # Web client interface files
+│   ├── chat.js            # Chat feed engine and formatting
+│   ├── sidebar.js         # UI navigation logic
+│   └── siri_mode.js       # Voice activation visualization scripts
+│
+├── pictures/              # Graphic assets and design resources
+│   ├── icon.png
+│   └── logo-removebg-preview.png
+│
+├── .env                   # Private environment variables (Local only)
+├── .env.example           # Shared placeholder example template for variables
+├── .gitignore             # Files to exclude from Git version tracking
+├── index.html             # Core user interface landing page
+├── jarvis.db              # Main relational database tracking layer
+├── package.json           # Node project descriptors
+├── package-lock.json      
+├── README.md              # Documentation (This file!)
+├── requirements.txt       # Automatically generated Python dependencies 
+├── script.js              # Base root scripts
+├── siri.html              # Dedicated voice-mode interface
+└── style.js               # Global UI layout styles
+🤝 Contributing
+Contributions make the open-source community an amazing place to learn, inspire, and create.
+
+Fork the Project
+
+Create your Feature Branch (git checkout -b feature/AmazingFeature)
+
+Commit your Changes (git commit -m 'Add some AmazingFeature')
+
+Push to the Branch (git push origin feature/AmazingFeature)
+
+Open a Pull Request
+
+📄 License
+Distributed under the MIT License. See LICENSE for more information.
