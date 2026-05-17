@@ -31,6 +31,8 @@ Open your terminal or command prompt and run the following commands to clone the
 git clone https://github.com/YOUR_USERNAME/jarvis-agentic-assistant.git
 cd jarvis-agentic-assistant
 
+---
+
 ### 2. Set Up a Virtual Environment (Recommended)
 A virtual environment keeps the project dependencies isolated from your global system.
 
@@ -42,16 +44,22 @@ venv\Scripts\activate
 python3 -m venv venv
 source venv/bin/activate
 
+---
+
 ### 3. Install Dependencies
 Install all the required Python packages using `pip` directly from the root directory:
 
 pip install -r requirements.txt
+
+---
 
 ### 4. Configure Environment Variables
 Look at the `.env.example` file provided in the root directory for reference. Create a new file named `.env` in the root directory, open it, and add your configuration credentials:
 
 FLASK_ENV=development
 GEMINI_API_KEY=your_api_key_here
+
+---
 
 ### 5. Run the Backend Application
 Navigate into the backend folder and start the Flask development server:
@@ -60,6 +68,8 @@ cd backend
 python app.py
 
 Your backend server will now be running locally at `http://127.0.0.1:5000/`.
+
+---
 
 ### 6. Launch the Front-End User Interface
 Keep the backend terminal running, open a new file explorer window, navigate to the root folder of your project, and open **`index.html`** in any web browser to start chatting with JARVIS!
@@ -106,19 +116,24 @@ Here is a breakdown of how the project is organized:
 ├── script.js              # Base root scripts
 ├── siri.html              # Dedicated voice-mode interface
 └── style.js               # Global UI layout styles
+```
+
+---
 
 🤝 Contributing
 Contributions make the open-source community an amazing place to learn, inspire, and create.
 
-Fork the Project
+• Fork the Project
 
-Create your Feature Branch: git checkout -b feature/AmazingFeature
+• Create your Feature Branch: git checkout -b feature/AmazingFeature
 
-Commit your Changes: git commit -m 'Add some AmazingFeature'
+• Commit your Changes: git commit -m 'Add some AmazingFeature'
 
-Push to the Branch: git push origin feature/AmazingFeature
+• Push to the Branch: git push origin feature/AmazingFeature
 
-Open a Pull Request
+• Open a Pull Request
+
+---
 
 📄 License
 This project is licensed under the MIT License - see the LICENSE file for details.
