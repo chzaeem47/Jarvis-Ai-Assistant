@@ -108,18 +108,19 @@ Plaintext
 ├── script.js              # Base root scripts
 ├── siri.html              # Dedicated voice-mode interface
 └── style.js               # Global UI layout styles
+
+```
 🤝 Contributing
 Contributions make the open-source community an amazing place to learn, inspire, and create.
 
-Fork the Project
+• Fork the Project
 
-Create your Feature Branch (git checkout -b feature/AmazingFeature)
+• Create your Feature Branch (git checkout -b feature/AmazingFeature)
 
-Commit your Changes (git commit -m 'Add some AmazingFeature')
+• Commit your Changes (git commit -m 'Add some AmazingFeature')
 
-Push to the Branch (git push origin feature/AmazingFeature)
+• Push to the Branch (git push origin feature/AmazingFeature)
 
-Open a Pull Request
-
-📄 License
-Distributed under the MIT License. See LICENSE for more information.
+• Open a Pull Request
+ 
+```
