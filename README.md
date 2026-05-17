@@ -120,7 +120,7 @@ Here is a breakdown of how the project is organized:
 
 ---
 
-🤝 Contributing
+### 7. Contributing
 Contributions make the open-source community an amazing place to learn, inspire, and create.
 
 • Fork the Project
@@ -135,7 +135,7 @@ Contributions make the open-source community an amazing place to learn, inspire,
 
 ---
 
-📄 License
+### 8. License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 The MIT License is a short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under any different terms and without source code.
