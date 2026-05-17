@@ -28,50 +28,48 @@ Before you begin, ensure you have the following installed on your system:
 ### 1. Clone the Repository
 Open your terminal or command prompt and run the following commands to clone the project and navigate into its directory:
 
-```bash
-git clone [https://github.com/YOUR_USERNAME/jarvis-agentic-assistant.git](https://github.com/YOUR_USERNAME/jarvis-agentic-assistant.git)
+git clone https://github.com/YOUR_USERNAME/jarvis-agentic-assistant.git
 cd jarvis-agentic-assistant
-2. Set Up a Virtual Environment (Recommended)
+
+### 2. Set Up a Virtual Environment (Recommended)
 A virtual environment keeps the project dependencies isolated from your global system.
 
-On Windows:
-
-Bash
+**On Windows:**
 python -m venv venv
 venv\Scripts\activate
-On macOS/Linux:
 
-Bash
+**On macOS/Linux:**
 python3 -m venv venv
 source venv/bin/activate
-3. Install Dependencies
-Install all the required Python packages using pip directly from the root directory:
 
-Bash
+### 3. Install Dependencies
+Install all the required Python packages using `pip` directly from the root directory:
+
 pip install -r requirements.txt
-4. Configure Environment Variables
-Look at the .env.example file provided in the root directory for reference. Create a new file named .env in the root directory, open it, and add your configuration credentials:
 
-Code snippet
+### 4. Configure Environment Variables
+Look at the `.env.example` file provided in the root directory for reference. Create a new file named `.env` in the root directory, open it, and add your configuration credentials:
+
 FLASK_ENV=development
 GEMINI_API_KEY=your_api_key_here
-⚠️ Note: Never commit your actual .env file to GitHub. It is already added to the .gitignore to protect your credentials.
 
-5. Run the Backend Application
+### 5. Run the Backend Application
 Navigate into the backend folder and start the Flask development server:
 
-Bash
 cd backend
 python app.py
-Your backend server will now be running locally at http://127.0.0.1:5000/.
 
-6. Launch the Front-End User Interface
-Keep the backend terminal running, open a new file explorer window, navigate to the root folder of your project, and open index.html in any web browser to start chatting with JARVIS!
+Your backend server will now be running locally at `http://127.0.0.1:5000/`.
 
-📁 Project Structure
+### 6. Launch the Front-End User Interface
+Keep the backend terminal running, open a new file explorer window, navigate to the root folder of your project, and open **`index.html`** in any web browser to start chatting with JARVIS!
+
+---
+
+## 📁 Project Structure
 Here is a breakdown of how the project is organized:
 
-Plaintext
+```text
 ├── backend/               # Core Python Flask API & Logic
 │   ├── __pycache__/
 │   ├── app.py             # Main backend application entry point
@@ -109,18 +107,20 @@ Plaintext
 ├── siri.html              # Dedicated voice-mode interface
 └── style.js               # Global UI layout styles
 
-```
 🤝 Contributing
 Contributions make the open-source community an amazing place to learn, inspire, and create.
 
-• Fork the Project
+Fork the Project
 
-• Create your Feature Branch (git checkout -b feature/AmazingFeature)
+Create your Feature Branch: git checkout -b feature/AmazingFeature
 
-• Commit your Changes (git commit -m 'Add some AmazingFeature')
+Commit your Changes: git commit -m 'Add some AmazingFeature'
 
-• Push to the Branch (git push origin feature/AmazingFeature)
+Push to the Branch: git push origin feature/AmazingFeature
 
-• Open a Pull Request
- 
-```
+Open a Pull Request
+
+📄 License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+The MIT License is a short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under any different terms and without source code.
