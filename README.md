@@ -14,6 +14,8 @@ JARVIS/
 │   ├── config.py            # Configuration
 │   ├── chat_service.py      # Gemini chat service
 │   └── requirements.txt      # Python dependencies
+|   |_features.py            #AUtomation 
+|   |_db.py                  #sqlLite DB
 ├── frontend/                # Frontend JavaScript
 │   └── chat.js             # Chat client
 ├── data/                    # Data storage
@@ -31,16 +33,12 @@ JARVIS/
 
 ### Step 2: Setup Environment Variable
 
-1. Copy `.env.example` to `.env`:
-   ```bash
-   cp .env.example .env
-   ```
+1. Make your own  .env:
 
-2. Open `.env` and replace `your_api_key_here` with your actual API key:
-   ```
+2. Open .env and replace your_api_key_here with your actual API key:
+  
    GEMINI_API_KEY=your_actual_api_key_here
    FLASK_ENV=development
-   ```
 
 ### Step 3: Install Python Dependencies
 

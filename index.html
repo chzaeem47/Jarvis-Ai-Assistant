@@ -10,13 +10,33 @@
     <!--TEXTILLATE TEXT ANMATIONS-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.min.js"></script>
+    <script src="http~s://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/textillate/0.4.0/jquery.textillate.min.js"></script>
     
 </head>
 <body>
 
-    <img src="pictures/logo.png" style="width: 60ch;" class="logo">
+    <section id="Oval">
+    <div class="assistant-container">
+        
+        <div id="JarvisHood">
+            
+            <div id="particleContainer"></div>
+
+            <div class="square">
+                <span class="circle"></span>
+                <span class="circle"></span>
+                <span class="circle"></span>
+            </div>
+            
+        </div>
+
+        </div>
+    </section>
+ 
+  
+    
+    <img src="pictures/logo-removebg-preview.png" style="width: 60ch;" class="logo">
     
 
     <div class="hamburger-menu" id="hamburger">
@@ -54,18 +74,6 @@
             <p class="empty-activity">Waiting for Messages</p>
         </div>
     </div>
-    
-
-    <div class="main-container">
-        <div class="blob-wrapper">
-            <div class="blob-outer-glow"></div>
-            <div class="blob-inner-core">
-                <div class="blob-inner-core">
-                  <div class="particles"></div>
-                  <div class="particles-extra"></div>
-                </div>
-            </div>
-        </div>
 
         <div class="ui-content">
             <p><span id="typed"></span></p>
@@ -76,7 +84,12 @@
                 <input type="text" placeholder="Type here ...">
                 <div class="icon-group">
                     <button class="icon-btn" id="sendBtn" title="Send message" type="button"><box-icon name='send' color='#ffffff' class="custom_icon"></box-icon></button>
+                   
+
+                    <a href="siri.html">
                     <button class="icon-btn" id="micBtn" type="button"><box-icon name='user-voice' color='#ffffff' class="custom_icon"></box-icon></button>
+                    </a>
+
                     <button class="icon-btn" type="button"><box-icon name='paperclip' color='#ffffff' class="custom_icon"></box-icon></button>
                     <button class="icon-btn" type="button"><box-icon name='cog' color='#ffffff' class="custom_icon"></box-icon></button>
                 </div>
@@ -101,12 +114,13 @@
 
 </body>
 <!--SIRI WAVE-->
-<script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
 <!--BOX ICONS-->
 <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
 <script src="frontend/sidebar.js"></script>
 <script src="frontend/chat.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+<script src="script.js"></script>
+
 
 </html>

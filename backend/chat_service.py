@@ -77,22 +77,37 @@ class ChatService:
         except Exception as e:
             print(f"[GenAI] Model discovery failed: {str(e)}")
 
-    def send_message(self, user_message: str) -> str:
+    def send_message(self, user_message: str):
         if not user_message or not user_message.strip():
             return 'Error: empty message'
 
+        cleaned_msg = user_message.lower().strip()
         
-        if self.provider == 'genai' and self.available_genai_models:
+        # 1. Intercept WhatsApp automation phrases
+        if any(trigger in cleaned_msg for trigger in ["send message", "phone call", "video call"]):
+            from command import execute_command
+            cmd_result = execute_command(user_message)
+            if cmd_result:
+                return cmd_result
+
+        # 2. Intercept system "open" actions
+        if cleaned_msg.startswith("open "):
+            from features import open_command
+            open_command(user_message)
+            return {"action": "complete", "response": f"Command executed for: '{user_message}'"}
+                
+        # 3. ROUTE TO GEMINI (Since your terminal log shows GenAI is active!)
+        if hasattr(self, 'provider') and self.provider == 'genai':
             try:
+                # Use your existing internal call method for Gemini
                 result = self._call_genai(user_message)
                 if result:
                     self.save_to_history(user_message, result)
                     return result
             except Exception as e:
-                print(f"[GenAI] send_message failed: {str(e)}")
-                
+                print(f"[Gemini] send_message failed: {str(e)}")
 
-       
+        # 4. Fallback to OpenAI provider if configured
         if self.openai_module and self.openai_api_key:
             try:
                 result = self._call_openai(user_message)
@@ -102,7 +117,7 @@ class ChatService:
             except Exception as e:
                 print(f"[OpenAI] send_message failed: {str(e)}")
 
-        
+        # 5. Ultimate Fallback Error Display
         return (
             'All AI providers are unavailable.\n\n'
             'To fix:\n'

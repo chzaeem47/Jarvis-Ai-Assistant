@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jarvis Voice</title>
+
+    <!-- Textillate dependencies -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lettering.js/0.7.0/jquery.lettering.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/textillate/0.4.0/jquery.textillate.min.js"></script>
+
+    <style>
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+
+        body {
+            background: linear-gradient(135deg, #000000 0%, #0a0520 30%, #0d0b3a 55%, #0a1628 75%, #001a2e 100%);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: 'Times New Roman', serif;
+        }
+
+        /* ── Back button ── */
+        #back-btn {
+            position: fixed;
+            top: 22px;
+            left: 28px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: aqua;
+            font-size: 16px;
+            letter-spacing: 1.2px;
+            padding: 8px 16px;
+            border: 1px solid rgba(0,255,255,0.35);
+            border-radius: 30px;
+            background: rgba(0,255,255,0.05);
+            transition: all 0.3s ease;
+            z-index: 100;
+        }
+        #back-btn:hover {
+            background: rgba(0,255,255,0.15);
+            border-color: aqua;
+            box-shadow: 0 0 14px rgba(0,255,255,0.5);
+            transform: translateX(-3px);
+        }
+        #back-btn svg { transition: transform 0.3s ease; }
+        #back-btn:hover svg { transform: translateX(-4px); }
+
+        /* ── Central stage: text above wave, wave, text below ── */
+        #stage {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 700px;
+            gap: 0;
+        }
+
+        /* ── Speaker label ("YOU" / "JARVIS") ── */
+        #speaker-label {
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            opacity: 0;
+            transition: opacity 0.4s ease, color 0.4s ease;
+            height: 14px;
+        }
+        #speaker-label.you    { color: #64b5f6; opacity: 1; }
+        #speaker-label.jarvis { color: #00d4ff; opacity: 1; }
+
+        /* ── Text display above wave ── */
+        /* ── Text display above wave ── */
+        #display-text {
+            min-height: 80px;
+            max-width: 640px;      /* Slightly pulled in to force clean center structures */
+            text-align: center;
+            font-size: 1.65rem;    /* Made text slightly bigger and clearer for single-line viewing */
+            line-height: 1.5;
+            letter-spacing: 0.6px;
+            color: #e8e8ff;
+            margin-bottom: 28px;
+            word-break: keep-all;  /* Prevent words breaking mid-spelling */
+            padding: 0 20px;
+            transition: opacity 0.15s ease-in-out; /* Smooth transition when shifting lines */
+        }
+
+        /* ── SiriWave ── */
+        #siri-container {
+            width: 600px;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* ── "I am listening" bottom label ── */
+        #listening-label {
+            position: fixed;
+            bottom: 36px;
+            color: aqua;
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.5s forwards;
+            transition: opacity 0.5s ease;
+        }
+        #listening-label.hidden { opacity: 0 !important; animation: none; }
+
+        .dot { display: inline-block; animation: blink 1.2s infinite; }
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+
+        /* ── Check Result button (appears after Jarvis speaks) ── */
+        #check-btn {
+            display: none;
+            position: fixed;
+            bottom: 30px;
+            padding: 9px 26px;
+            background: rgba(0,102,255,0.3);
+            border: 1px solid rgba(0,212,255,0.6);
+            border-radius: 25px;
+            color: white;
+            font-family: 'Times New Roman', serif;
+            font-size: 14px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(0,212,255,0.2);
+        }
+        #check-btn:hover {
+            background: rgba(0,102,255,0.55);
+            box-shadow: 0 0 18px rgba(0,212,255,0.55);
+            border-color: aqua;
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes blink {
+            0%, 80%, 100% { opacity: 1; }
+            40%            { opacity: 0; }
+        }
+
+        #siri-mic{
+            background:none;
+            border: 1px solid aqua;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+        #siri-mic:hover{
+            box-shadow: 0 0 10px aqua;
+            transform: translateY(-5px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            
+        }
+    </style>
+</head>
+<body>
+
+    <a href="index.html" id="back-btn">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="aqua" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+        Go back to Jarvis
+    </a>
+
+    <div id="stage">
+        <div id="speaker-label"></div>
+        <div id="display-text"></div>
+        <div id="siri-container"></div>
+    </div>
+
+
+    <button id="check-btn">✦ Check Result in Jarvis</button>
+
+    <button id="siri-mic"><box-icon name='microphone' color='#07f6f2' ></box-icon></button>
+
+    <script src="https://unpkg.com/siriwave/dist/siriwave.umd.min.js"></script>
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="frontend/siri_mode.js"></script>
+</body>
+</html>
