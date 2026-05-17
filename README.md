@@ -1,6 +1,9 @@
+# JARVIS: Memory-Enhanced Agentic AI Assistant 🤖🎙️
+
 JARVIS is a multi-lingual, voice-activated AI personal assistant designed to seamlessly handle tasks, automate desktop interactions, and retain contextual memory across conversations. Built using an agentic architecture, it combines speech-to-text intelligence, localized data management, automation scripts, and a robust Flask backend with a responsive frontend UI.
 
 ## ✨ Features
+
 * **🗣️ Multi-Lingual Speech Recognition:** Seamless voice-to-text and text-to-speech capabilities.
 * **🧠 Agentic Memory Modules:** Context-aware interactions powered by an intelligent chat memory layer.
 * **🗄️ Embedded Relational Storage:** Utilizes a lightweight SQLite database (`jarvis.db`) for ultra-fast local data management and transaction logging.
@@ -47,16 +50,11 @@ Install all the required Python packages using pip directly from the root direct
 Bash
 pip install -r requirements.txt
 4. Configure Environment Variables
-Look at the .env.example file provided in the root directory for reference.
-
-Create a new file named .env in the root directory.
-
-Open the file and add your configuration credentials (e.g., API keys, Flask settings):
+Look at the .env.example file provided in the root directory for reference. Create a new file named .env in the root directory, open it, and add your configuration credentials:
 
 Code snippet
 FLASK_ENV=development
-SECRET_KEY=your_secret_key_here
-API_KEY=your_api_key_here
+GEMINI_API_KEY=your_api_key_here
 ⚠️ Note: Never commit your actual .env file to GitHub. It is already added to the .gitignore to protect your credentials.
 
 5. Run the Backend Application
