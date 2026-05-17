@@ -67,11 +67,11 @@ Your backend server will now be running locally at http://127.0.0.1:5000/.
 
 6. Launch the Front-End User Interface
 Keep the backend terminal running, open a new file explorer window, navigate to the root folder of your project, and open index.html in any web browser to start chatting with JARVIS!
-
-📁 Project Structure
+```
+## 📁 Project Structure
 Here is a breakdown of how the project is organized:
 
-Plaintext
+```
 ├── backend/               # Core Python Flask API & Logic
 │   ├── __pycache__/
 │   ├── app.py             # Main backend application entry point
@@ -108,6 +108,7 @@ Plaintext
 ├── script.js              # Base root scripts
 ├── siri.html              # Dedicated voice-mode interface
 └── style.js               # Global UI layout styles
+```
 🤝 Contributing
 Contributions make the open-source community an amazing place to learn, inspire, and create.
 
