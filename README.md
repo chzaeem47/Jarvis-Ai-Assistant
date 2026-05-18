@@ -61,7 +61,14 @@ GEMINI_API_KEY=your_api_key_here
 
 ---
 
-### 5. Run the Backend Application
+### 5. Export your Contacts
+Export you contacts from google contacts as .csv
+
+place that file in backend folder
+
+---
+
+### 6. Run the Backend Application
 Navigate into the backend folder and start the Flask development server:
 
 cd backend
@@ -71,7 +78,7 @@ Your backend server will now be running locally at `http://127.0.0.1:5000/`.
 
 ---
 
-### 6. Launch the Front-End User Interface
+### 7. Launch the Front-End User Interface
 Keep the backend terminal running, open a new file explorer window, navigate to the root folder of your project, and open **`index.html`** in any web browser to start chatting with JARVIS!
 
 ---
@@ -120,7 +127,7 @@ Here is a breakdown of how the project is organized:
 
 ---
 
-### 7. Contributing
+### 8. Contributing
 Contributions make the open-source community an amazing place to learn, inspire, and create.
 
 • Fork the Project
@@ -135,7 +142,7 @@ Contributions make the open-source community an amazing place to learn, inspire,
 
 ---
 
-### 8. License
+### 9. License
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 The MIT License is a short and simple permissive license with conditions only requiring preservation of copyright and license notices. Licensed works, modifications, and larger works may be distributed under any different terms and without source code.
