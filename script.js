@@ -3,72 +3,110 @@ $(document).ready(function () {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
 
-    const PARTICLE_COUNT = 400;
-    const CENTER_X = 141;
-    const CENTER_Y = 138;
-    const MAX_RADIUS = 150;
+    const PARTICLE_COUNT = 450;
+    const CENTER_X = canvas.width / 2; // Better to center dynamically
+    const CENTER_Y = canvas.height / 2;
+    const MAX_RADIUS = 600;
+    const FOV = 350; // Field of view for 3D perspective
 
     const colors = [
         "rgb(255, 255, 255)", 
-        "rgb(0, 251, 255)",   
-        "rgb(0, 234, 255)",   
+        "rgb(0, 255, 255)",   
+        "rgb(0, 255, 255)",   
         "rgb(0, 255, 247)",   
-        "rgb(255, 255, 255)", 
         "rgb(255, 255, 255)"
     ];
 
-    // Generate and store particle properties
     const particles = [];
+
+    // 1. Generate particles in a 3D Sphere (Spherical Coordinates)
     for (let i = 0; i < PARTICLE_COUNT; i++) {
-        const angle = Math.random() * Math.PI * 5;
-        const distance = Math.sqrt(Math.random()) * MAX_RADIUS;
+        // Random point on a sphere
+        const phi = Math.acos(1 - 2 * Math.random());
+        const theta = Math.random() * 2 * Math.PI;
+        
+        // Random distance from center (cube root ensures even volume distribution)
+        const radius = Math.cbrt(Math.random()) * MAX_RADIUS;
         
         particles.push({
-            // Base positions
-            baseX: CENTER_X + Math.cos(angle) * distance,
-            baseY: CENTER_Y + Math.sin(angle) * distance,
-            // Current positions
-            x: 0,
-            y: 0,
-            size: 2 + Math.random() * 3,
+            // 3D Base Coordinates
+            baseX: radius * Math.sin(phi) * Math.cos(theta),
+            baseY: radius * Math.sin(phi) * Math.sin(theta),
+            baseZ: radius * Math.cos(phi),
+            
+            baseSize: 1 + Math.random() * 2,
             color: colors[Math.floor(Math.random() * colors.length)],
-            // Unique speeds/offsets for the "organic drift"
-            angleOffset: Math.random() * 1,
+            
+            // Drift properties
+            angleOffset: Math.random() * Math.PI * 1,
             speed: 0.01 + Math.random() * 0.02,
-            driftRange: 5 + Math.random() * 10
+            driftRange: 5 + Math.random() * 15
         });
     }
 
-    // Animation Loop
+    let globalRotationY = 0;
+    let globalRotationX = 0;
+
     function animate() {
-        // Clear canvas every frame
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        particles.forEach(p => {
-            // Replicate the CSS 'organicDrift' using Math.sin
+        // Slowly rotate the entire blob
+        globalRotationY += 0.005;
+        globalRotationX += 0.002;
+
+        const cosY = Math.cos(globalRotationY);
+        const sinY = Math.sin(globalRotationY);
+        const cosX = Math.cos(globalRotationX);
+        const sinX = Math.sin(globalRotationX);
+
+        // Sort particles by Z-index (Draw back to front)
+        const projectedParticles = particles.map(p => {
+            // Apply organic drift in 3D
             p.angleOffset += p.speed;
             const driftX = Math.sin(p.angleOffset) * p.driftRange;
             const driftY = Math.cos(p.angleOffset) * p.driftRange;
+            const driftZ = Math.sin(p.angleOffset * 0.8) * p.driftRange;
 
-            p.x = p.baseX + driftX;
-            p.y = p.baseY + driftY;
+            let x = p.baseX + driftX;
+            let y = p.baseY + driftY;
+            let z = p.baseZ + driftZ;
 
-            // Draw particle
-            ctx.beginPath();
-            ctx.arc(p.x, p.y, p.size / 2, 0, Math.PI * 2);
-            ctx.fillStyle = p.color;
+            // Apply Y-Axis Rotation
+            let xRot = x * cosY - z * sinY;
+            let zRot = x * sinY + z * cosY;
+
+            // Apply X-Axis Rotation
+            let yRot = y * cosX - zRot * sinX;
+            zRot = y * sinX + zRot * cosX;
+
+            // 3D to 2D Projection
+            const scale = FOV / (FOV + zRot + MAX_RADIUS * 2); // Shift Z back so camera isn't inside the blob
             
-            // Optional: Glow effect (Can be taxing, remove if mobile lags)
+            return {
+                x2d: CENTER_X + xRot * scale,
+                y2d: CENTER_Y + yRot * scale,
+                size2d: p.baseSize * scale * 2.3, // Scale size by depth
+                zRot: zRot,
+                color: p.color
+            };
+        });
+
+        // Depth sorting: Draw furthest particles first
+        projectedParticles.sort((a, b) => b.zRot - a.zRot);
+
+        projectedParticles.forEach(p => {
+            if (p.size2d < 0) return; // Don't draw if behind camera
+
+            ctx.beginPath();
+            ctx.arc(p.x2d, p.y2d, Math.max(0.1, p.size2d), 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
             ctx.shadowBlur = 5;
             ctx.shadowColor = p.color;
-
             ctx.fill();
         });
 
-        // Tells browser to animate efficiently
         requestAnimationFrame(animate);
     }
 
-    // Start loop
     animate();
 });

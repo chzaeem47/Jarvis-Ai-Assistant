@@ -7,13 +7,13 @@ cursor = con.cursor()
 # query = "CREATE TABLE IF NOT EXISTS sys_command(id integer primary key, name VARCHAR(100), path VARCHAR(1000))"
 # cursor.execute(query)
 
-# query = "INSERT INTO sys_command VALUES (null,'notepad', 'C:\\Program Files\\Microsoft Office\\root\\Office16\\notepad')"
+# query = "INSERT INTO sys_command VALUES (null,'vs code', 'C:\\Users\\ChZaeem47\\AppData\\Local\Programs\\Microsoft VS Code\\Code')"
 # cursor.execute(query)
 # con.commit()
 
 # query = "CREATE TABLE IF NOT EXISTS web_command(id integer primary key, name VARCHAR(100), url VARCHAR(1000))"
 # cursor.execute(query)
 
-query = "INSERT INTO web_command VALUES (null,'portal', 'https://swl-sis.comsats.edu.pk/CourseRegistration/')"
-cursor.execute(query)
-con.commit()
+# query = "INSERT INTO web_command VALUES (null,'canva', 'https://www.canva.com/')"
+# cursor.execute(query)
+# con.commit()

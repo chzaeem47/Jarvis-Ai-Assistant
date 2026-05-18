@@ -45,5 +45,6 @@ npm-debug.log
 data/chat_history.json
 
 backend/jarvis.db
-
+backend/secret.key
 backend/contacts.csv
+

@@ -14,6 +14,7 @@ import pyautogui
 import time
 import win32gui
 import win32con
+from features import automated_portal_login 
 
 app = Flask(__name__)
 
@@ -111,21 +112,6 @@ def force_focus_whatsapp():
                 if win32gui.IsIconic(hwnd):
                     win32gui.ShowWindow(hwnd, win32con.SW_RESTORE)
                 # Force it to the foreground
-                win32gui.SetForegroundWindow(hwnd)
-            except Exception as e:
-                print(f"[DEBUG LOG] Focus force warning: {e}")
-
-    # Give Windows a split second to send the URI intent to WhatsApp
-    time.sleep(1.0)
-    win32gui.EnumWindows(window_enum_callback, "WhatsApp")
-
-def force_focus_whatsapp():
-    """Finds the WhatsApp window and forces it to the foreground to clear taskbar blinking."""
-    def window_enum_callback(hwnd, wildcard):
-        if wildcard.lower() in win32gui.GetWindowText(hwnd).lower():
-            try:
-                if win32gui.IsIconic(hwnd):
-                    win32gui.ShowWindow(hwnd, win32con.SW_RESTORE)
                 win32gui.SetForegroundWindow(hwnd)
             except Exception as e:
                 print(f"[DEBUG LOG] Focus force warning: {e}")
@@ -285,6 +271,15 @@ def chat():
             automation_result = open_command(cleaned_query)
             if automation_result:
                 return jsonify({'action': 'automation', 'response': automation_result, 'status': 'success'}), 200
+
+        # ============================================================
+        # NEW CONTEXT INTERCEPT: PORTAL AUTOMATED LOGINS
+        # ============================================================
+        elif "log me into" in user_message_lower or "login to" in user_message_lower:
+            portal_target = user_message_lower.replace("log me into", "").replace("login to", "").strip()
+            automation_result = automated_portal_login(portal_target)
+            return jsonify({'action': 'automation', 'response': automation_result, 'status': 'success'}), 200
+        
 
         # ============================================================
         # STEP 1: Initializing the command (e.g., "Send message to Alisha")
