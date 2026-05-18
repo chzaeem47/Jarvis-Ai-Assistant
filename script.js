@@ -1,56 +1,74 @@
 $(document).ready(function () {
-    const container = document.getElementById("particleContainer");
-    
-    // Clear out any old lingering cached elements before rendering
-    if(container) container.innerHTML = ''; 
+    const canvas = document.getElementById("particleCanvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
 
-    const PARTICLE_COUNT = 250; 
+    const PARTICLE_COUNT = 350;
+    const CENTER_X = 141;
+    const CENTER_Y = 140;
+    const MAX_RADIUS = 150;
 
     const colors = [
-        "rgba(255, 255, 255, 0.85)",  /* Electric Lime */
-        "rgb(0, 253, 236)",   /* Bright Cyan */
-        "rgb(2, 250, 246)",   /* Neon Mint */
-        "rgb(2, 236, 248)",   /* Hot Pink */
-        "rgb(255, 255, 255)", /* Purple Nebula */
-        "rgba(255, 255, 255, 0.95)" /* White Highlights */
+        "rgb(255, 255, 255)", 
+        "rgb(0, 13, 255)",   
+        "rgb(2, 163, 250)",   
+        "rgb(2, 248, 178)",   
+        "rgb(255, 255, 255)", 
+        "rgb(255, 255, 255)"
     ];
 
-    // Centering calculations explicitly mapped for your 290px CSS container
-    const CENTER_X = 140; 
-    const CENTER_Y = 135; 
-    const MAX_RADIUS = 130; /* Keeps particles safely inside the 290px bounds */
-
+    // Generate and store particle properties
+    const particles = [];
     for (let i = 0; i < PARTICLE_COUNT; i++) {
-        const spark = document.createElement("div");
-        spark.className = "spark";
-
-        // Particle sizing variations
-        const size = 1.5 + Math.random() * 2.6;
-        spark.style.width = `${size}px`;
-        spark.style.height = `${size}px`;
-
-        // Circular Distribution Equation
-        const angle = Math.random() * Math.PI *2;
+        const angle = Math.random() * Math.PI * 5;
         const distance = Math.sqrt(Math.random()) * MAX_RADIUS;
-
-        // Calculate absolute top/left offset positions from the container's (0,0) corner
-        const posX = CENTER_X + Math.cos(angle) * distance;
-        const posY = CENTER_Y + Math.sin(angle) * distance;
-
-        spark.style.left = `${posX}px`;
-        spark.style.top = `${posY}px`;
-
-        // Style and Color Mapping
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-        spark.style.backgroundColor = randomColor;
-        spark.style.boxShadow = `0 0 5px ${randomColor}`;
-
-        // Organic Timing Variations
-        const duration = 3.5 + Math.random() * 5.5;
-        const delay = Math.random(); 
         
-        spark.style.animation = `organicDrift ${duration}s ease-in-out ${delay}s infinite alternate`;
-
-        container.appendChild(spark);
+        particles.push({
+            // Base positions
+            baseX: CENTER_X + Math.cos(angle) * distance,
+            baseY: CENTER_Y + Math.sin(angle) * distance,
+            // Current positions
+            x: 0,
+            y: 0,
+            size: 2 + Math.random() * 2.6,
+            color: colors[Math.floor(Math.random() * colors.length)],
+            // Unique speeds/offsets for the "organic drift"
+            angleOffset: Math.random() * 100,
+            speed: 0.01 + Math.random() * 0.03,
+            driftRange: 5 + Math.random() * 10
+        });
     }
+
+    // Animation Loop
+    function animate() {
+        // Clear canvas every frame
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach(p => {
+            // Replicate the CSS 'organicDrift' using Math.sin
+            p.angleOffset += p.speed;
+            const driftX = Math.sin(p.angleOffset) * p.driftRange;
+            const driftY = Math.cos(p.angleOffset) * p.driftRange;
+
+            p.x = p.baseX + driftX;
+            p.y = p.baseY + driftY;
+
+            // Draw particle
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.size / 2, 0, Math.PI * 2);
+            ctx.fillStyle = p.color;
+            
+            // Optional: Glow effect (Can be taxing, remove if mobile lags)
+            ctx.shadowBlur = 5;
+            ctx.shadowColor = p.color;
+
+            ctx.fill();
+        });
+
+        // Tells browser to animate efficiently
+        requestAnimationFrame(animate);
+    }
+
+    // Start loop
+    animate();
 });

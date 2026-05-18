@@ -932,7 +932,7 @@ background: rgba(8, 5, 35, 0.95);
     bottom: 13px;
 }
 
-#particleContainer, #canvasOne {
+#particleCanvas, #canvasOne {
     position: relative; 
     width: 260px;
     height: 260px;
