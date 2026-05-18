@@ -3,16 +3,16 @@ $(document).ready(function () {
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
 
-    const PARTICLE_COUNT = 350;
+    const PARTICLE_COUNT = 400;
     const CENTER_X = 141;
-    const CENTER_Y = 140;
+    const CENTER_Y = 138;
     const MAX_RADIUS = 150;
 
     const colors = [
         "rgb(255, 255, 255)", 
-        "rgb(0, 13, 255)",   
-        "rgb(2, 163, 250)",   
-        "rgb(2, 248, 178)",   
+        "rgb(0, 251, 255)",   
+        "rgb(0, 234, 255)",   
+        "rgb(0, 255, 247)",   
         "rgb(255, 255, 255)", 
         "rgb(255, 255, 255)"
     ];
@@ -30,11 +30,11 @@ $(document).ready(function () {
             // Current positions
             x: 0,
             y: 0,
-            size: 2 + Math.random() * 2.6,
+            size: 2 + Math.random() * 3,
             color: colors[Math.floor(Math.random() * colors.length)],
             // Unique speeds/offsets for the "organic drift"
-            angleOffset: Math.random() * 100,
-            speed: 0.01 + Math.random() * 0.03,
+            angleOffset: Math.random() * 1,
+            speed: 0.01 + Math.random() * 0.02,
             driftRange: 5 + Math.random() * 10
         });
     }

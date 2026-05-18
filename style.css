@@ -6,6 +6,10 @@
     font-family: 'Inter', sans-serif;
 }
 
+#linkedin-logo{
+    padding-bottom: 1px;
+}
+
 body {
     background: linear-gradient(135deg, #000000 0%, #0a0520 30%, #0d0b3a 55%, #0a1628 75%, #001a2e 100%);
     background-attachment: fixed; 
