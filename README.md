@@ -70,6 +70,8 @@ Export Google Contacts: Export your contacts from Google Contacts as a .csv file
 
 Credential Manager Key: Ensure your local password manager environment initializes its secure key (secret.key) locally inside the backend/ folder.
 
+--- 
+
 ### 4. Initialize the Local SQLite Database
 JARVIS relies on a local relational SQLite database to reference custom system shortcuts and app mappings. Before running the application for the first time, initialize the database file:
 
@@ -86,6 +88,8 @@ cd ..
 ```
 This will successfully compile and establish the local jarvis.db data tracking file.
 
+---
+
 ### 5. Run the Backend Application
 Navigate into the backend folder and start your Flask automation and reasoning server:
 
@@ -94,6 +98,8 @@ Bash
 python backend/app.py
 ```
 Your backend server will now be running locally at [http://127.0.0.1:5000/](http://127.0.0.1:5000/). Keep this terminal window open!
+
+---
 
 ### 6. Launch the Front-End User Interface
 With the backend server running, open a separate terminal or use your system file explorer, navigate to the root folder of the project, and open index.html in any modern web browser to start chatting and utilizing JARVIS!
@@ -137,17 +143,19 @@ Plaintext
 ---
 
 ### 7. Contributing
-Contributions make the open-source community an amazing place to learn, inspire, and create.
+~Contributions make the open-source community an amazing place to learn, inspire, and create.
 
-Fork the Project
+~Fork the Project
 
-Create your Feature Branch (git checkout -b feature/AmazingFeature)
+~Create your Feature Branch (git checkout -b feature/AmazingFeature)
 
-Commit your Changes (git commit -m 'Add some AmazingFeature')
+~Commit your Changes (git commit -m 'Add some AmazingFeature')
 
-Push to the Branch (git push origin feature/AmazingFeature)
+~Push to the Branch (git push origin feature/AmazingFeature)
 
-Open a Pull Request
+~Open a Pull Request
+
+---
 
 ### 8. License
 This project is licensed under the MIT License - see the LICENSE file for details.
