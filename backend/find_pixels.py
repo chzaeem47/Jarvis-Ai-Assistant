@@ -6,7 +6,7 @@ for i in range(5, 0, -1):
     print(f"{i}...")
     time.sleep(1)
 
-# Grab where your cursor is currently pointing
+#FIND PIXELS (X-Y) WHERE THE CURSOR IS:
 x, y = pyautogui.position()
 print("\n" + "="*40)
 print(f"🎯 SUCCESS! The current coordinates are: X = {x}, Y = {y}")
